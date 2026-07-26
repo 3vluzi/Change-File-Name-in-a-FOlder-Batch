@@ -1,0 +1,7 @@
+Get-ChildItem *.mp3 | ForEach-Object {
+    if ($_.BaseName -match '^(\d+)_doa_(.+)$') {
+        $nomor = "{0:D2}" -f [int]$matches[1]
+        $namaBaru = "doa_${nomor}_$($matches[2])$($_.Extension)"
+        Rename-Item $_.FullName $namaBaru
+    }
+}
